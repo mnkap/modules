@@ -7,7 +7,7 @@ terraform {
   }
 }
 
-  provider "aws" {
+provider "aws" {
   region = "us-east-1"
 }
 
@@ -27,16 +27,16 @@ resource "aws_internet_gateway" "main" {
 
 
 resource "aws_subnet" "public" {
-   vpc_id            = aws_vpc.main.id
-   cidr_block        = "10.0.0.0/24"
+  vpc_id     = aws_vpc.main.id
+  cidr_block = "10.0.0.0/24"
   tags = {
     Name = "${var.env_code}-public"
   }
 }
 
 resource "aws_subnet" "private" {
-  vpc_id            = aws_vpc.main.id
-  cidr_block        = "10.0.2.0/24"
+  vpc_id     = aws_vpc.main.id
+  cidr_block = "10.0.2.0/24"
   tags = {
     Name = "${var.env_code}-private"
   }
