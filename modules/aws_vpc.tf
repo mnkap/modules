@@ -17,7 +17,7 @@ resource "aws_vpc" "main" {
 
 
 resource "aws_internet_gateway" "main" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.main.cidr_block
 
 
   tags = {
@@ -27,7 +27,7 @@ resource "aws_internet_gateway" "main" {
 
 
 resource "aws_subnet" "public" {
-  vpc_id     = aws_vpc.main.vpc_id
+  vpc_id     = aws_vpc.main.cidr_block
   cidr_block = "10.0.0.0/24"
   tags = {
     Name = "${var.env_code}-public"
@@ -35,7 +35,7 @@ resource "aws_subnet" "public" {
 }
 
 resource "aws_subnet" "private" {
-  vpc_id     = aws_vpc.main.vpc_id
+  vpc_id     = aws_vpc.main.cidr_block
   cidr_block = "10.0.2.0/24"
   tags = {
     Name = "${var.env_code}-private"
@@ -43,7 +43,7 @@ resource "aws_subnet" "private" {
 }
 
 resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.main.cidr_block
 
   route {
     cidr_block = "0.0.0.0/0"
