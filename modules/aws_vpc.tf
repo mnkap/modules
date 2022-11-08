@@ -13,11 +13,15 @@ provider "aws" {
 
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
+
+  tags = {
+    Name = var.env_code
+  }
 }
 
 
 resource "aws_internet_gateway" "main" {
-  vpc_id = aws_vpc.main.cidr_block
+  vpc_id = aws_vpc.main.id
 
 
   tags = {
@@ -27,7 +31,7 @@ resource "aws_internet_gateway" "main" {
 
 
 resource "aws_subnet" "public" {
-  vpc_id     = aws_vpc.main.cidr_block
+  vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.0.0/24"
   tags = {
     Name = "${var.env_code}-public"
@@ -35,7 +39,7 @@ resource "aws_subnet" "public" {
 }
 
 resource "aws_subnet" "private" {
-  vpc_id     = aws_vpc.main.cidr_block
+  vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.2.0/24"
   tags = {
     Name = "${var.env_code}-private"
@@ -43,7 +47,7 @@ resource "aws_subnet" "private" {
 }
 
 resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.main.cidr_block
+  vpc_id = aws_vpc.main.id
 
   route {
     cidr_block = "0.0.0.0/0"
