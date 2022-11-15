@@ -1,11 +1,11 @@
-variable "env_code" {
-  default = "main"
+variable "public_subnet_id" {
+  default = "public_subnet_id"
 }
 
-variable "vpc_id" {}
+variable "private_subnet_id" {
+  default = "private_subnet_id"
+}
 
-variable "public_subnet_id" {}
-
-variable "private_subnet_id" {}
-
-variable "aws_vpc" {}
+variable "aws_vpc" {
+  default = "aws_vpc"
+}
