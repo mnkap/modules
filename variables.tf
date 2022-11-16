@@ -5,7 +5,3 @@ variable "public_subnet_id" {
 variable "private_subnet_id" {
   default = "private_subnet_id"
 }
-
-variable "aws_vpc" {
-  default = "aws_vpc"
-}
