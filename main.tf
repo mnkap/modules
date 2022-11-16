@@ -1,8 +1,5 @@
-module "vpc" {
-  source = "./modules"
-
-  env_code     = var.env_code
-  vpc_cidr     = var.aws_vpc
-  private_cidr = var.private_cidr
-  public_cidr  = var.public_cidr
+module "aws_vpc" {
+  source            = "./modules"
+  private_subnet_id = var.private_subnet_id
+  public_subnet_id  = var.public_subnet_id
 }
